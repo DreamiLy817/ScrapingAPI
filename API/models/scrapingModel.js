@@ -8,10 +8,11 @@ var ClothSchema = new Schema({
 	title: { type: String, required: true},
 	url: { type: String, required: true },
 	image: {type: String,required: true },
-	priceD: [{ 
+	priceD: [
+		[{ 
         prix: { type: String, required: true },
         currentDate: { type: Date, default: Date.now()}  
-        }
+        }]
 	]
 });
 
