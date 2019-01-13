@@ -6,10 +6,11 @@ var mongoose = require('mongoose'),
   bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Clothdb');
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+mongoose.connect('mongodb://localhost/Clothdb',{ useNewUrlParser: true });
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var routes = require('./API/routes/scrapingRoutes'); //importing route
 routes(app); //register the route

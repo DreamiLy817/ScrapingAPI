@@ -12,4 +12,5 @@ module.exports = function(app) {
         .get(scraping.getCloth)
         .put(scraping.updateCloth)
         .delete(scraping.deleteCloth);
+
 };
