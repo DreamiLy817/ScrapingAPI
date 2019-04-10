@@ -5,7 +5,7 @@ module.exports = function(app) {
 
     // routes
 
-    app.route('/test')
+    app.route('/liste-vetement')
         .get(scraping.getListCloth);
 
     app.route('/vetements')
