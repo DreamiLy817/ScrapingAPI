@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/nodemon server.js --exec babel-node"
+    "start": "node_modules/.bin/nodemon  server.js --exec babel-node --",
+    "prod": "node server.js --exec babel-node --"
   },
   "repository": {
     "type": "git",
@@ -12,21 +13,16 @@
   },
   "author": "Leslie Blt",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LeslieBaltimore/ScrapingAPI/issues"
-  },
-  "homepage": "https://github.com/LeslieBaltimore/ScrapingAPI#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
     "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongoose": "^5.4.1"
+    "mongoose": "^5.8.7"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9",
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2017": "^6.24.1"
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.18.9"
   }
 }
