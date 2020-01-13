@@ -1,23 +1,30 @@
-var express = require("express");
-var app = express();
-var port = 3000;
-var mongoose = require('mongoose'),
+let express = require("express");
+let cors = require('cors');
+
+let app = express();
+let port = 3010;
+let mongoose = require('mongoose'),
   Task = require('./API/models/scrapingModel'), //created model loading here
   bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Clothdb');
+mongoose.connect("mongodb://localhost/cloth", { useFindAndModify: false,  useNewUrlParser: true, useUnifiedTopology: true}).catch((e) => {
+  console.error(e)
+  console.error('mongodb://localhost/cloth')
+} );
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(cors());
 
-var routes = require('./API/routes/scrapingRoutes'); //importing route
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
+app.use(bodyParser.json({limit: '50mb'}));
+
+let routes = require('./API/routes/scrapingRoutes'); //importing route
 routes(app); //register the route
 
 app.listen(port, () => {
- console.log("Server running on port 3000");
+  console.log("Server running on port " +  port + " " + new Date());
 });
 
 app.use(function(req, res) {
-    res.status(404).send({url: req.originalUrl + ' not found'})
-  });
+  res.status(404).send({url: req.originalUrl + ' not found'})
+});
